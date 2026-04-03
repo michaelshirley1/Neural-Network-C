@@ -1,52 +1,65 @@
-# Prerequisites
-*.d
-
-# Object files
+# Compiled object files
 *.o
-*.ko
 *.obj
-*.elf
+*.lo
+*.slo
 
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
+# Precompiled headers
 *.gch
 *.pch
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
+# Compiled dynamic/shared libraries
 *.so
 *.so.*
 *.dylib
+*.dll
+
+# Compiled static libraries
+*.a
+*.lib
+*.la
+*.lai
 
 # Executables
 *.exe
 *.out
 *.app
-*.i*86
-*.x86_64
-*.hex
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
+# Build directories
+build/
+cmake-build-*/
+out/
+bin/
+lib/
+Debug/
+Release/
+x64/
+x86/
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+_deps/
+
+# Visual Studio
+.vs/
+*.vcxproj.user
+*.suo
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+ipch/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Dependency directories
+vendor/
