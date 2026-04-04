@@ -18,4 +18,7 @@ public:
 	static float sigmoidDerivative(float z);
 	static float tanhDerivative(float z);
 	static float linearDerivative(float z);
+
+	static float computeLoss(lossType loss, const std::vector<float>& prediction, const std::vector<float>& actual);
+	static std::vector<float> lossDerivative(lossType loss, const std::vector<float>& prediction, const std::vector<float>& actual);
 };

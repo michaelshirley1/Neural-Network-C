@@ -8,7 +8,7 @@ neuron::neuron(int numInputs, applyTypes initActivationFunction) {
 	weights = std::vector<weight>();
 
 	for (int i = 0; i < numInputs; i++) {
-		float scale = 1 / sqrt(numInputs);
+		float scale = 1.0f / sqrt((float)numInputs);
 		float value = helpers::randomUniform(-scale, scale);
 
 		weights.push_back(

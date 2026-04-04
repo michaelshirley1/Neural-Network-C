@@ -6,9 +6,9 @@ enum class networkLayerType {
 	OUTPUT = 3,
 };
 
-enum class activationType {
-	RELU = 1,
-	SOFTMAX = 2,
+enum class lossType {
+	MSE = 1,
+	CROSS_ENTROPY = 2,
 };
 
 enum class applyTypes {

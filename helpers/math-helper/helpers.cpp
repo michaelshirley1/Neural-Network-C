@@ -92,3 +92,37 @@ float helpers::tanhDerivative(float z) {
 float helpers::linearDerivative(float z) {
     return 1.0f;
 }
+
+float helpers::computeLoss(lossType loss, const std::vector<float>& prediction, const std::vector<float>& actual) {
+    if (loss == lossType::CROSS_ENTROPY) {
+        float total = 0.0f;
+        for (int i = 0; i < prediction.size(); i++) {
+            total -= actual[i] * std::log(prediction[i] + 1e-7f);
+        }
+        return total;
+    }
+    if (loss == lossType::MSE) {
+        float total = 0.0f;
+        for (int i = 0; i < prediction.size(); i++) {
+            float diff = prediction[i] - actual[i];
+            total += diff * diff;
+        }
+        return total / prediction.size();
+    }
+    return 0.0f;
+}
+
+std::vector<float> helpers::lossDerivative(lossType loss, const std::vector<float>& prediction, const std::vector<float>& actual) {
+    std::vector<float> errors(prediction.size());
+    if (loss == lossType::CROSS_ENTROPY) {
+        for (int i = 0; i < prediction.size(); i++) {
+            errors[i] = prediction[i] - actual[i];
+        }
+    }
+    else if (loss == lossType::MSE) {
+        for (int i = 0; i < prediction.size(); i++) {
+            errors[i] = 2.0f * (prediction[i] - actual[i]) / prediction.size();
+        }
+    }
+    return errors;
+}

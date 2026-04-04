@@ -131,7 +131,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="helpers\helpers.cpp" />
+    <ClCompile Include="helpers\input-helper\input.cpp" />
+    <ClCompile Include="helpers\math-helper\helpers.cpp" />
     <ClCompile Include="layer\layer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="network\network.cpp" />
@@ -139,8 +140,12 @@
     <ClCompile Include="weight\weight.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="helpers\helpers.h" />
+    <ClInclude Include="C:\Users\micha\Downloads\stb_image.h" />
+    <ClInclude Include="helpers\input-helper\input.h" />
+    <ClInclude Include="helpers\math-helper\helpers.h" />
+    <ClInclude Include="helpers\stb_image.h" />
     <ClInclude Include="helpers\types.h" />
+    <ClInclude Include="layer-config\layer-config.h" />
     <ClInclude Include="layer\layer.h" />
     <ClInclude Include="network\network.h" />
     <ClInclude Include="neuron\neuron.h" />
