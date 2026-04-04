@@ -76,6 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)neuron;$(ProjectDir)layer;$(ProjectDir)weight;$(ProjectDir)helpers;$(ProjectDir)network;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -90,6 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)neuron;$(ProjectDir)layer;$(ProjectDir)weight;$(ProjectDir)helpers;$(ProjectDir)network;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -104,6 +106,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)neuron;$(ProjectDir)layer;$(ProjectDir)weight;$(ProjectDir)helpers;$(ProjectDir)network;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,6 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)neuron;$(ProjectDir)layer;$(ProjectDir)weight;$(ProjectDir)helpers;$(ProjectDir)network;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,13 +131,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="helpers\helpers.cpp" />
+    <ClCompile Include="layer\layer.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Neuron.cpp" />
+    <ClCompile Include="network\network.cpp" />
+    <ClCompile Include="neuron\neuron.cpp" />
+    <ClCompile Include="weight\weight.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="layer.h" />
-    <ClInclude Include="neuron.h" />
-    <ClInclude Include="weight.h" />
+    <ClInclude Include="helpers\helpers.h" />
+    <ClInclude Include="helpers\types.h" />
+    <ClInclude Include="layer\layer.h" />
+    <ClInclude Include="network\network.h" />
+    <ClInclude Include="neuron\neuron.h" />
+    <ClInclude Include="weight\weight.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
