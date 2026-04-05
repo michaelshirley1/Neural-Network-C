@@ -46,7 +46,7 @@ void input::loadDataset(const std::string& rootFolder, const std::vector<std::st
             std::string stem = entry.path().stem().string();
 
             try {
-                if (std::stoi(stem) > 1000) continue;
+                if (std::stoi(stem) > 5000) continue;
             } catch (const std::invalid_argument&) {
                 continue;
             } catch (const std::out_of_range&) {
