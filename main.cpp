@@ -1,12 +1,75 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <random>
+#include <numeric>
 #include "network.h"
-
-#define fileLocation = "C:\Users\micha\Downloads\archive"
+#include "input-helper/input.h"
 
 int main() {
-    
+    std::cout << "Starting network" << std::endl;
 
+    const std::string fileLocation = "";
+
+    std::vector<std::string> labels = std::vector<std::string> {
+        "Z",
+        "Y",
+        "X",
+        "W",
+        "V",
+        "U",
+        "T",
+        "S",
+        "R",
+        "Q",
+        "P",
+        "N",
+        "M",
+        "L",
+        "K",
+        "J",
+        "I",
+        "H",
+        "G",
+        "F",
+        "E",
+        "D",
+        "C",
+        "B",
+        "A",
+        "@",
+        "9",
+        "8",
+        "7",
+        "6",
+        "5",
+        "4",
+        "3",
+        "2",
+        "1",
+        "0",
+        "&",
+        "$",
+        "#"
+    };
+
+    std::vector<std::vector<float>> inputs = std::vector<std::vector<float>>();
+    std::vector<std::vector<float>> actuals = std::vector<std::vector<float>>();
+
+    input::loadDataset(fileLocation, labels, inputs, actuals);
+
+    std::vector<int> indices(inputs.size());
+    std::iota(indices.begin(), indices.end(), 0);
+    std::shuffle(indices.begin(), indices.end(), std::mt19937{std::random_device{}()});
+
+    std::vector<std::vector<float>> shuffledInputs(inputs.size());
+    std::vector<std::vector<float>> shuffledActuals(actuals.size());
+    for (int i = 0; i < (int)indices.size(); i++) {
+        shuffledInputs[i] = inputs[indices[i]];
+        shuffledActuals[i] = actuals[indices[i]];
+    }
+    inputs = std::move(shuffledInputs);
+    actuals = std::move(shuffledActuals);
 
     std::vector<layerConfig> configs = {
         { 1024, applyTypes::LINEAR,  networkLayerType::INPUT  },
@@ -25,6 +88,9 @@ int main() {
             std::cout << "Epoch " << epoch << " — Loss: " << loss << std::endl;
         }
     }
+
+    net.saveWeights("weights.bin");
+    std::cout << "Weights saved to weights.bin\n";
 
     std::cout << "\nPredictions after training:\n";
     for (int i = 0; i < inputs.size(); i++) {

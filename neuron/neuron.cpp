@@ -1,6 +1,6 @@
 #include "neuron.h"
-#include "helpers.h"
 #include <vector>
+#include <math-helper/helpers.h>
 
 neuron::neuron(int numInputs, applyTypes initActivationFunction) {
 	activationFunction = initActivationFunction;

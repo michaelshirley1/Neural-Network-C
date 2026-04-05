@@ -30,10 +30,10 @@
     <ClCompile Include="neuron\neuron.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="helpers\helpers.cpp">
+    <ClCompile Include="helpers\input-helper\input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="layer-config\layer-config.cpp">
+    <ClCompile Include="helpers\math-helper\helpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,10 +53,19 @@
     <ClInclude Include="neuron\neuron.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helpers\helpers.h">
+    <ClInclude Include="layer-config\layer-config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="layer-config\layer-config.h">
+    <ClInclude Include="C:\Users\micha\Downloads\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\input-helper\input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\math-helper\helpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

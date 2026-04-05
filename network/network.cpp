@@ -1,5 +1,7 @@
 #include "network.h"
-#include "helpers.h"
+#include <math-helper/helpers.h>
+#include <fstream>
+#include <stdexcept>
 
 network::network(const std::vector<layerConfig>& configs, float initLearningRate, lossType initLossFn) {
 	learningRate = initLearningRate;
@@ -52,6 +54,34 @@ float network::trainOneSample(const std::vector<float>& inputData, const std::ve
 	backward(prediction, actual);
 	accumulateGradients();
 	return loss;
+}
+
+void network::saveWeights(const std::string& path) {
+	std::ofstream file(path, std::ios::binary);
+	if (!file) throw std::runtime_error("Cannot open file for writing: " + path);
+
+	for (int i = 1; i < (int)layers.size(); i++) {
+		for (auto& n : layers[i].neurons) {
+			for (auto& w : n.weights) {
+				file.write(reinterpret_cast<const char*>(&w.value), sizeof(float));
+			}
+			file.write(reinterpret_cast<const char*>(&n.bias.value), sizeof(float));
+		}
+	}
+}
+
+void network::loadWeights(const std::string& path) {
+	std::ifstream file(path, std::ios::binary);
+	if (!file) throw std::runtime_error("Cannot open file for reading: " + path);
+
+	for (int i = 1; i < (int)layers.size(); i++) {
+		for (auto& n : layers[i].neurons) {
+			for (auto& w : n.weights) {
+				file.read(reinterpret_cast<char*>(&w.value), sizeof(float));
+			}
+			file.read(reinterpret_cast<char*>(&n.bias.value), sizeof(float));
+		}
+	}
 }
 
 float network::trainBatch(const std::vector<std::vector<float>>& inputs, const std::vector<std::vector<float>>& actuals) {

@@ -2,6 +2,7 @@
 #include <vector>
 #include "layer.h"
 #include "types.h"
+#include <iostream>
 
 struct layerConfig {
 	int size;
@@ -20,6 +21,8 @@ public:
 
 	float trainOneSample(const std::vector<float>& inputData, const std::vector<float>& actual);
 	float trainBatch(const std::vector<std::vector<float>>& inputs, const std::vector<std::vector<float>>& actuals);
+	void saveWeights(const std::string& path);
+	void loadWeights(const std::string& path);
 
 	std::vector<layer> layers;
 	float learningRate;
