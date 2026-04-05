@@ -21,7 +21,7 @@ static const std::vector<layerConfig> CONFIGS = {
 };
 
 void runPredict(const std::string& imagePath) {
-    network net(CONFIGS, 0.01f, lossType::CROSS_ENTROPY);
+    network net(CONFIGS, 0.0001f, lossType::CROSS_ENTROPY);
     net.loadWeights("weights.bin");
 
     std::vector<float> imageData = input::loadImage(imagePath);
@@ -62,7 +62,7 @@ void runTrain(const std::string& datasetPath) {
 
     network net(CONFIGS, 0.01f, lossType::CROSS_ENTROPY);
 
-    int epochs = 10;
+    int epochs = 3;
     for (int epoch = 0; epoch < epochs; epoch++) {
         float loss = net.trainBatch(inputs, actuals);
         std::cout << "Epoch " << epoch << " - Loss: " << loss << std::endl;

@@ -70,6 +70,8 @@ float helpers::activationDerivative(applyTypes activationFunction, float z) {
             return tanhDerivative(z);
         case applyTypes::LINEAR:
             return linearDerivative(z);
+        case applyTypes::SOFTMAX:
+            return 1.0f;
         default:
             return 0.0f;
     }
