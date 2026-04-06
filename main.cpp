@@ -62,7 +62,7 @@ void runTrain(const std::string& datasetPath) {
 
     network net(CONFIGS, 0.0001f, lossType::CROSS_ENTROPY);
 
-    int epochs = 3;
+    int epochs = 7;
     for (int epoch = 0; epoch < epochs; epoch++) {
         float loss = net.trainBatch(inputs, actuals);
         std::cout << "Epoch " << epoch << " - Loss: " << loss << std::endl;

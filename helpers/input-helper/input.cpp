@@ -33,8 +33,6 @@ std::vector<float> input::loadImage(const std::string& path) {
 void input::loadDataset(const std::string& rootFolder, const std::vector<std::string>& labels, std::vector<std::vector<float>>& inputs, std::vector<std::vector<float>>& actuals) {
     for (int i = 0; i < (int)labels.size(); i++) {
 
-        std::cout << "Hitting label " << labels[i] << std::endl;
-
         fs::path labelDir = fs::path(rootFolder) / labels[i];
         if (!fs::exists(labelDir) || !fs::is_directory(labelDir)) continue;
 
@@ -44,16 +42,6 @@ void input::loadDataset(const std::string& rootFolder, const std::vector<std::st
         for (const auto& entry : fs::directory_iterator(labelDir)) {
             std::string path = entry.path().string();
             std::string stem = entry.path().stem().string();
-
-            try {
-                if (std::stoi(stem) > 1000) continue;
-            } catch (const std::invalid_argument&) {
-                continue;
-            } catch (const std::out_of_range&) {
-                continue;
-            }
-
-            std::cout << "Hitting directory " << entry.path() << std::endl;
 
             std::string ext = entry.path().extension().string();
             if (ext != ".jpg" && ext != ".jpeg" && ext != ".png" && ext != ".bmp") continue;
