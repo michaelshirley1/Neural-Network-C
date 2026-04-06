@@ -4,8 +4,9 @@ A feedforward neural network built from scratch in C++, no added ML libraries, a
 
 This repository serves as a easy to read machine learning example for others trying to get into Machine learning. No obfuscation of the mathematics used, no external libraries.
 
-A annotated version is avaliable in /annotated
+**A annotated version is avaliable in /annotated**
 
+<img width="661" height="261" alt="image" src="https://github.com/user-attachments/assets/0b999a45-c8d9-4172-b99b-4f71fec53c4c" />
 
 ## What it is
 
