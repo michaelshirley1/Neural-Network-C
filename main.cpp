@@ -60,9 +60,9 @@ void runTrain(const std::string& datasetPath) {
     inputs = std::move(shuffledInputs);
     actuals = std::move(shuffledActuals);
 
-    network net(CONFIGS, 0.0001f, lossType::CROSS_ENTROPY);
+    network net(CONFIGS, 0.001f, lossType::CROSS_ENTROPY);
 
-    int epochs = 7;
+    int epochs = 3;
     for (int epoch = 0; epoch < epochs; epoch++) {
         float loss = net.trainBatch(inputs, actuals);
         std::cout << "Epoch " << epoch << " - Loss: " << loss << std::endl;
