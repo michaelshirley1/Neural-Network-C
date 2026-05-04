@@ -1,5 +1,6 @@
 #include "layer.h"
 #include <math-helper/helpers.h>
+#include <execution>
 
 layer::layer(int numNeurons, int numInputsPerNeuron, applyTypes initActivationFunction, networkLayerType initLayerType) {
 	layerType = initLayerType;
@@ -19,16 +20,16 @@ layer::layer(int numNeurons, int numInputsPerNeuron, applyTypes initActivationFu
 
 std::vector<float> layer::getOutputs() {
 	std::vector<float> outputs;
-	for (auto& n : neurons) {
+	std::for_each(std::execution::par_unseq, neurons.begin(), neurons.end(), [&](neuron& n) {
 		outputs.push_back(n.activatedOutput);
-	}
+	});
 	return outputs;
 }
 
 void layer::updateWeights(float learningRate) {
-	for (auto& n : neurons) {
+	std::for_each(std::execution::par_unseq, neurons.begin(), neurons.end(), [&](neuron& n) {
 		n.updateWeights(learningRate);
-	}
+	});
 }
 
 std::vector<float> layer::forward(const std::vector<float>& inputs) {
@@ -40,17 +41,17 @@ std::vector<float> layer::forward(const std::vector<float>& inputs) {
 	}
 
 	if (activationFunction == applyTypes::SOFTMAX) {
-		for (auto& n : neurons) {
+		std::for_each(std::execution::par_unseq, neurons.begin(), neurons.end(), [&](neuron& n) {
 			n.rawOutput = n.bias.value;
 			for (int j = 0; j < inputs.size(); j++) {
 				n.rawOutput += n.weights[j].value * inputs[j];
 			}
-		}
+		});
 
 		std::vector<float> rawOutputs;
-		for (auto& n : neurons) {
+		std::for_each(std::execution::par_unseq, neurons.begin(), neurons.end(), [&](neuron& n) {
 			rawOutputs.push_back(n.rawOutput);
-		}
+		});
 
 		std::vector<float> softmaxVals = helpers::softmax(rawOutputs);
 
@@ -59,9 +60,9 @@ std::vector<float> layer::forward(const std::vector<float>& inputs) {
 		}
 	}
 	else {
-		for (auto& n : neurons) {
+		std::for_each(std::execution::par_unseq, neurons.begin(), neurons.end(), [&](neuron& n) {
 			n.forward(inputs);
-		}
+		});
 	}
 
 	return getOutputs();
@@ -83,7 +84,7 @@ std::vector<float> layer::backward(const std::vector<float>& downstreamErrors) {
 }
 
 void layer::accumulateGradients(const std::vector<float>& inputs) {
-	for (auto& n : neurons) {
+	std::for_each(std::execution::par_unseq, neurons.begin(), neurons.end(), [&](neuron& n) {
 		n.accumulateGradients(inputs);
-	}
+	});
 }

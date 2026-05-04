@@ -2,6 +2,7 @@
 #include <math-helper/helpers.h>
 #include <fstream>
 #include <stdexcept>
+#include <execution>
 
 network::network(const std::vector<layerConfig>& configs, float initLearningRate, lossType initLossFn) {
 	learningRate = initLearningRate;
