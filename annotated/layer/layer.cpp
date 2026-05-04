@@ -1,6 +1,5 @@
 #include "layer.h"
 #include <math-helper/helpers.h>
-#include <algorithm>
 #include <execution>
 
 layer::layer(int numNeurons, int numInputsPerNeuron, applyTypes initActivationFunction, networkLayerType initLayerType) {
